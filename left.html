@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<style type="text/css">
+		html,body{height:100%;}
+		.list-group{margin:20px 0 0 20px; width:300px; box-shadow:0 6px 12px rgba(0, 0, 0, 0.176);}
+		.list-group-item{padding:0;}
+		.list-group-item-title{cursor:pointer; padding:10px 15px;}
+		.select{background-color:#ebebeb;}
+		.list-group-item-content{display:none; list-style:none; padding:5px 0 0 20px;}
+		.list-group-item-content li a{color:#333; display:block; margin-bottom:5px; padding-left:10px; text-decoration:none;}
+		.list-group-item-content li a:hover,.list-group-item-content li .select{color:#fff; background-color:#428bca;}
+		.glyphicon{color:#999; font-size:12px; padding-right:5px;}
+	</style>
+</head>
+<body>
+	<div>
+		<ul id="left-nav" class="list-group">
+			<li class="list-group-item">
+				<div class="list-group-item-title"><span class="glyphicon glyphicon-plus"></span>Cras justo odio</div>
+				<ul class="list-group-item-content">
+					<li><a href="#">lable1</a></li>
+					<li><a href="#">lable1</a></li>
+					<li><a href="#">lable1</a></li>
+					<li><a href="#">lable1</a></li>
+				</ul>
+			</li>
+			<li class="list-group-item">
+				<div class="list-group-item-title"><span class="glyphicon glyphicon-plus"></span>Dapibus ac facilisis in</div>
+				<ul class="list-group-item-content">
+					<li><a href="#">lable1</a></li>
+					<li><a href="##">lable1</a></li>
+					<li><a href="#">lable1</a></li>
+					<li><a href="#">lable1</a></li>
+				</ul>
+			</li>
+			<li class="list-group-item">
+				<div class="list-group-item-title"><span class="glyphicon glyphicon-plus"></span>Morbi leo risus</div>
+			</li>
+			<li class="list-group-item">
+				<div class="list-group-item-title"><span class="glyphicon glyphicon-plus"></span>Porta ac consectetur ac</div>
+			</li>
+			<li class="list-group-item">
+				<div class="list-group-item-title"><span class="glyphicon glyphicon-plus"></span>Vestibulum at eros</div>
+			</li>
+		</ul>
+	</div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	(function(){
+		var $leftNav = $('#left-nav'),
+			$listGroupItemTitle = $leftNav.find('.list-group-item-title');
+			$listIroupItemContentList = $leftNav.find('.list-group-item-content li a');
+		$.each($listGroupItemTitle,function(){
+			var $this = $(this);
+			if(!$this.next()[0]){
+				$this.find('.glyphicon').removeClass('glyphicon-plus');
+			}
+		});
+		$listGroupItemTitle.click(function(){
+			var $this = $(this),
+				$icon = $this.find('.glyphicon'),
+				$next = $this.next();
+
+			$listGroupItemTitle.removeClass('select');
+			$this.addClass('select');
+			if($icon.hasClass('glyphicon-plus')){
+				if($next.is(':visible')){
+					$icon.removeClass('glyphicon-minus');
+					$next.hide();
+				}else{
+					$icon.addClass('glyphicon-minus');
+					$next.show();
+				}
+			}
+		});
+
+		$listIroupItemContentList.click(function(){
+			$listIroupItemContentList.removeClass('select');
+			$(this).addClass('select');
+		});
+	})();
+</script>
+</body>
+</html>
